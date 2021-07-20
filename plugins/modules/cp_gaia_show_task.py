@@ -31,17 +31,17 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 DOCUMENTATION = """
 author: Thomas Marko (@arw-thomasm)
 description:
-- Running the first time wizard to create a Smartcenter/MDM server, a gateway or a cluster node
-module: cp_gaia_first_time_wizard
+- Running the first time wizard to create a Smartcenter/MDM server
+module: cp_run_ftw
 options:
 
-short_description: Run the First Time Wizard
+short_description: Run the First Time Wizard for Management
 version_added: '2.9'
 """
 
 EXAMPLES = """
 - name: Setup a primary Smartcenter Server
-  cp_gaia_first_time_wizard:
+  cp_run_ftw:
     password: vpn123
     security_management:
       multi_domain: False
@@ -60,39 +60,20 @@ task_id:
 """
 
 
+
 def main():
-    # arguments for the module:
-    fields = dict(
-      security_management=dict(type='dict', options=dict(
-        password=dict(type='str', required=True),
-        multi_domain=dict(type='bool', required=True),
-        type=dict(type='str', required=True, choices=['primary', 'secondary', 'log-server']),
-        activation_key=dict(type='str', required=False),
-        gui_clients=dict(type='dict', options=dict(
-          range=dict(type='dict', options=dict(
-            first_IPv4_range=dict(type='str'),
-            last_IPv4_range=dict(type='str')
-          )),
-          network=dict(type=dict, options=dict(
-            ip_network_address=dict(type='str'),
-            IPv4_masklen=dict(type='int')
-          )),
-          single_ip=dict(type='str')
-        )),
-        leading_interface=dict(type='str')
-      )),
-      security_gateway=dict(type='dict', options=dict(
-        dynamically_assigned_ip=dict(type='bool'),
-        activation_key=dict(type='str', required=True),
-        cluster_member=dict(type='bool')
-      ))
+    argument_spec = dict(
+        task_id=dict(type='list')
     )
-    module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = 'set-initial-setup'
+    argument_spec.update(checkpoint_argument_spec_for_commands)
 
-    res = api_call(module, api_call_object)
-    module.exit_json(**res)
+    module = AnsibleModule(argument_spec=argument_spec)
+
+    command = "show-task"
+
+    result = api_command(module, command)
+    module.exit_json(**result)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
