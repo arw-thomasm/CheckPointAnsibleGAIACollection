@@ -60,18 +60,17 @@ task_id:
 """
 
 
-
 def main():
     argument_spec = dict(
         task_id=dict(type='list')
     )
-    argument_spec.update(checkpoint_argument_spec_for_commands)
+    #argument_spec.update(checkpoint_argument_spec_for_commands)
 
     module = AnsibleModule(argument_spec=argument_spec)
 
     command = "show-task"
 
-    result = api_command(module, command)
+    result = api_call(module, command)
     module.exit_json(**result)
 
 
