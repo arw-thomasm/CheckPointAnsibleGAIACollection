@@ -31,47 +31,50 @@ from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import
 DOCUMENTATION = """
 author: Thomas Marko (@arw-thomasm)
 description:
-- Running the first time wizard to create a Smartcenter/MDM server
-module: cp_run_ftw
+- Show the status of one or more asynchronous tasks.  
+module: cp_gaia_show_task
 options:
+  task_id:
+    description: a task-id or a list of task-ids
+    required: true
+    type: list|str
 
-short_description: Run the First Time Wizard for Management
+short_description: Show the status of asynchronous tasks
 version_added: '2.9'
 """
 
 EXAMPLES = """
-- name: Setup a primary Smartcenter Server
-  cp_run_ftw:
-    password: vpn123
-    security_management:
-      multi_domain: False
-      type: primary
-      gui_clients:
-        network:
-          ip_network_address: 192.168.0.0
-          IPv4_masklen: 24
+- name: Show the status of a specific asynchronous task
+  cp_gaia_show_task:
+    task_id: ccc88f8f-ee65-44d2-bdc6-797f8347f6e1
+
+- name: Show the status for a list of asynchronous tasks
+  cp_gaia_show_task:
+    task_id:
+    - ccc88f8f-ee65-44d2-bdc6-797f8347f6e1
+      360e2231-232d-4006-8d1d-903cdc902434
 """
 
 RETURN = """
-task_id:
-  description: The task-id of the asynchronous task
+tasks:
+  description: A list of running tasks
   returned: always
-  type: str
+  type: list: dict
 """
 
 
 def main():
-    argument_spec = dict(
-        task_id=dict(type='list')
-    )
-    #argument_spec.update(checkpoint_argument_spec_for_commands)
+  # arguments for the module:
+  argument_spec = dict(
+      task_id=dict(type='list')
+  )
 
-    module = AnsibleModule(argument_spec=argument_spec)
+  module = AnsibleModule(argument_spec=argument_spec)
 
-    command = "show-task"
+  command = "show-task"
 
-    result = api_call(module, command)
-    module.exit_json(**result)
+  result = api_call(module, command)
+  module.exit_json(**result)
 
 
 if __name__ == '__main__':
