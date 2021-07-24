@@ -88,7 +88,7 @@ def main():
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'user'
     ignore = []
-    keys = []
+    keys = ['name']
 
     res = idempotent_api_call(module, api_call_object, ignore, keys)
     module.exit_json(**res)
