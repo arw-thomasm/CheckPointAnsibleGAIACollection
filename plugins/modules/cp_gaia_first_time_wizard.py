@@ -130,7 +130,7 @@ task_id:
 def main():
     # arguments for the module:
     argument_spec = dict(
-      password=dict(type='str', required=True, no_log=True),
+      password=dict(type='str', no_log=True),
       security_management=dict(type='dict', options=dict(
         multi_domain=dict(type='bool', required=True),
         type=dict(type='str', required=True, choices=['primary', 'secondary', 'log-server']),
