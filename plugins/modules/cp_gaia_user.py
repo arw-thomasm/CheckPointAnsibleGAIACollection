@@ -69,8 +69,8 @@ def main():
           add=dict(type='list'),
           remove=dict(type='list'),
         )),
-        password_hash=dict(type='str'),
-        must_change_password=dict(type='bool'),
+        password_hash=dict(type='str', no_log=True),
+        must_change_password=dict(type='bool', no_log=False),
         real_name=dict(type='str'),
         unlock=dict(type='bool'),
         allow_access_using=dict(type='dict', options=dict(
@@ -82,7 +82,7 @@ def main():
           remove=dict(type='list'),
         )),
         primary_system_group_id=dict(type='int'),
-        password=dict(type='str'),
+        password=dict(type='str', no_log=True),
         uid=dict(type='int')
     )
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
