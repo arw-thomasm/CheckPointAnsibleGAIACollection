@@ -26,7 +26,7 @@ ANSIBLE_METADATA = {'metadata_version': '1.1',
                     'supported_by': 'community'}
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import checkpoint_argument_spec_for_commands, api_call
 
 DOCUMENTATION = """
 author: Thomas Marko (@arw-thomasm)
@@ -154,6 +154,9 @@ def main():
         cluster_member=dict(type='bool')
       ))
     )
+
+    argument_spec.update(checkpoint_argument_spec_for_commands)
+
     module = AnsibleModule(argument_spec=argument_spec, supports_check_mode=True)
     api_call_object = 'set-initial-setup'
 
