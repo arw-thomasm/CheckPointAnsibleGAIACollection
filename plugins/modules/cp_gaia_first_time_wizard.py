@@ -26,7 +26,7 @@ ANSIBLE_METADATA = {'metadata_version': '1.1',
                     'supported_by': 'community'}
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import checkpoint_argument_spec_for_commands, api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import checkpoint_argument_spec_for_commands, api_command
 
 DOCUMENTATION = """
 author: Thomas Marko (@arw-thomasm)
@@ -160,7 +160,7 @@ def main():
     module = AnsibleModule(argument_spec=argument_spec, supports_check_mode=True)
     api_call_object = 'set-initial-setup'
 
-    res = api_call(module, api_call_object)
+    res = api_command(module, api_call_object)
     module.exit_json(**res)
 
 
