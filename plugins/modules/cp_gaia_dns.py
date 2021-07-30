@@ -81,7 +81,7 @@ def main():
         tertiary=dict(type='str')
     )
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = 'static-route'
+    api_call_object = 'dns'
     ignore = []
     keys = []
 
