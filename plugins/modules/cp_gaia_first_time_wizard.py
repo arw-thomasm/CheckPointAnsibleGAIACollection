@@ -55,7 +55,6 @@ options:
       activation_key:
         description: Secure Internal Communication key, relevant in case of secondary or log-server
         type: str
-        required: False
       gui_clients:
         description: choose which GUI clients can log into the Security Management. fill one of the parameters (range/network/single-ip), for multi-domain it can be only single-ip or can keep the default value (any)
         type: dict
@@ -123,7 +122,7 @@ RETURN = """
 task_id:
   description: The task-id of the asynchronous task of the FTW
   returned: always
-  type: str
+  type: string
 """
 
 
