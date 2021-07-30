@@ -36,19 +36,15 @@ module: cp_gaia_dns
 options:
     suffix:
         description: DNS Suffix
-        required: false
         type: str
     primary:
         description: Primary DNS server's ip address
-        required: false
         type: str
     secondary:
         description: Secondary DNS server's ip address
-        required: false
         type: str
     tertiary:
         description: Tertiary DNS server's ip address
-        required: false
         type: str
 
 short_description: Configure DNS settings

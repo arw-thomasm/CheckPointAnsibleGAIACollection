@@ -36,16 +36,13 @@ module: cp_gaia_static_route
 options:
     comment:
         description: Comment
-        required: false
         type: bool
     rank:
         description: Selects a route when there are many routes to a destination that use different routing protocols. 
             The route with the lowest rank value is selected. Possible values: default or integer 0-255
-        required: false
         type: int
     ping:
         description: Configures ping monitoring of the given IPv4 static route. Possible values: true, false
-        required: false
         type: bool
     mask_length:
         description: Mask-Length
@@ -54,7 +51,6 @@ options:
     scope-local:
         description: Configure the local-interface scope option, When the this option is enabled, the route treated as 
             directly connected to local machine. Possible values: true, false
-        required: false
         type: bool
     address:
         description: Destination IPv4 Address
@@ -62,7 +58,6 @@ options:
         type: str
     next_hop:
         description: Static next-hop. Contains a list of next-hop gateways.
-        required: false
         type: list|dict
     type:
         description: Type of next hop. Possible values: blackhole, gateway, reject
