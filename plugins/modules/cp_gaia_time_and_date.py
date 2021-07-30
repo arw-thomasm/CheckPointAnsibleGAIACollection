@@ -73,7 +73,7 @@ def main():
         time=dict(type='str'),
     )
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
-    api_call_object = 'time_and_date'
+    api_call_object = 'time-and-date'
     ignore = []
     keys = []
 
