@@ -95,7 +95,19 @@ def main():
         rank=dict(type='int'),
         scope_local=dict(type='bool'),
         address=dict(type='str'),
-        next_hop=dict(type='list', options=dict(
+        next_hop=dict(type='dict', options=dict(
+            add=dict(type=dict(
+                priority=dict(type='int'),
+                gateway=dict(type='str'),
+            )),
+            remove=dict(type=dict(
+                priority=dict(type='int'),
+                gateway=dict(type='str'),
+            )),
+            priority=dict(type='int'),
+            gateway=dict(type='str'),
+        )),
+        old_next_hop=dict(type='list', options=dict(
             priority=dict(type='int'),
             gateway=dict(type='str')
         )),
@@ -107,7 +119,7 @@ def main():
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'static-route'
     ignore = []
-    keys = []
+    keys = ['address', 'mask_length']
 
     res = idempotent_api_call(module, api_call_object, ignore, keys)
     module.exit_json(**res)
