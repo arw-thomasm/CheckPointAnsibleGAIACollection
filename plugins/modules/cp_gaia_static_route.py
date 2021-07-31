@@ -95,17 +95,19 @@ def main():
         rank=dict(type='int'),
         scope_local=dict(type='bool'),
         address=dict(type='str'),
-        next_hop=dict(type='list', options=dict(
-            add=dict(type=dict(
+        next_hop=dict(type='dict', options=dict(
+            add=dict(type=list, options=dict(
                 priority=dict(type='int'),
                 gateway=dict(type='str'),
             )),
-            remove=dict(type=dict(
+            remove=dict(type='list', options=dict(
                 priority=dict(type='int'),
                 gateway=dict(type='str'),
             )),
-            priority=dict(type='int'),
-            gateway=dict(type='str'),
+            type='list', options=dict(
+                priority=dict(type='int'),
+                gateway=dict(type='str'),
+            )
         )),
         type=dict(type='str', choices=['blackhole', 'gateway', 'reject'])
     )
