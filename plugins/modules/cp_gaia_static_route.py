@@ -95,7 +95,7 @@ def main():
         rank=dict(type='int'),
         scope_local=dict(type='bool'),
         address=dict(type='str'),
-        next_hop=dict(type='dict', options=dict(
+        next_hop=dict(type='list', options=dict(
             add=dict(type=dict(
                 priority=dict(type='int'),
                 gateway=dict(type='str'),
