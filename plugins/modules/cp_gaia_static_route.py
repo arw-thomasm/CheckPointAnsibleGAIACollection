@@ -26,7 +26,7 @@ ANSIBLE_METADATA = {'metadata_version': '1.1',
                     'supported_by': 'community'}
 
 from ansible.module_utils.basic import AnsibleModule
-from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import checkpoint_argument_spec_for_commands, idempotent_api_call
+from ansible_collections.check_point.gaia.plugins.module_utils.checkpoint import checkpoint_argument_spec_for_objects, idempotent_api_call
 
 DOCUMENTATION = """
 author: Thomas Marko (@arw-thomasm)
@@ -102,7 +102,7 @@ def main():
         type=dict(type='str', choices=['blackhole', 'gateway', 'reject'])
     )
 
-    fields.update(checkpoint_argument_spec_for_commands)
+    fields.update(checkpoint_argument_spec_for_objects)
 
     module = AnsibleModule(argument_spec=fields, supports_check_mode=True)
     api_call_object = 'static-route'
