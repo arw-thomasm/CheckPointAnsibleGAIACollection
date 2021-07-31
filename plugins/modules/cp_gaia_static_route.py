@@ -107,10 +107,6 @@ def main():
             priority=dict(type='int'),
             gateway=dict(type='str'),
         )),
-        old_next_hop=dict(type='list', options=dict(
-            priority=dict(type='int'),
-            gateway=dict(type='str')
-        )),
         type=dict(type='str', choices=['blackhole', 'gateway', 'reject'])
     )
 
